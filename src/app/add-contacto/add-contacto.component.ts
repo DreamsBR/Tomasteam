@@ -13,15 +13,15 @@ export class AddContactoComponent implements OnInit {
   usuario:any ={};
 
   contactos:any=[];
-  
+
   contacto:any ={};
-  
+
   crear:boolean =false;
-  
+
   loading:boolean=false;
-  
+
     constructor(private http:HttpClient) { }
-  
+
   ngOnInit(): void {
       this.usuario=JSON.parse(localStorage.getItem("usuario"));
       if(!this.usuario){
@@ -36,21 +36,26 @@ export class AddContactoComponent implements OnInit {
       localStorage.removeItem("usuario");
       location.href="/"
     }
+
+
     buscarContactos(){
       this.loading=true;
       this.buscarContactosServicio().subscribe((Response:any)=>this.llenarContactos(Response));
     }
+
+
     buscarContactosServicio():Observable<any>{
       return this.http.get<any>("http://localhost:9090/contacto/buscar/"+this.usuario.correo).pipe(
         catchError(e=>"error"))
     }
+    
     llenarContactos(contactos:any){
       this.contactos = contactos;
       this.loading=false;
     }
     agregar(){
       this.crear =!this.crear;
-  
+
     }
     crearContacto(){
       let formulario:any=document.getElementById("crear");
@@ -62,6 +67,9 @@ export class AddContactoComponent implements OnInit {
         );
     }
   }
+
+
+
   contactoServicio(){
         var httpOptions = {
           headers: new HttpHeaders({
@@ -96,6 +104,5 @@ export class AddContactoComponent implements OnInit {
       borrarDireccion(direccion:any){
         this.contacto.direccionList.splice(this.contacto.correoList.indexOf(direccion),1);
       }
-  
+
   }
-  

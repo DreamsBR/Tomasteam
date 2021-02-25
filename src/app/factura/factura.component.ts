@@ -2,6 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ContactoService } from '../add-contacto/contacto.service';
+import { Contacto } from '../add-contacto/contato';
+import { Factura } from './factura';
+
+
 
 @Component({
   selector: 'app-factura',
@@ -19,9 +24,18 @@ export class FacturaComponent implements OnInit {
 
   loading: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  nuevoFactura : Factura = new Factura();
+  contanto : Contacto[] | undefined;
+
+  contactoSelañado : number;
+
+  constructor(private http: HttpClient,
+      private contactoService : ContactoService
+    ) { }
 
   ngOnInit(): void {
+    this.listarContactos()
+
 this.factura=JSON.parse(localStorage.getItem("usuario"))
     if(!this.usuario){
     location.href="/";
@@ -42,6 +56,20 @@ Factura() {
       );
     }
   }
+
+
+
+/*
+  listando contactos
+*/
+  listarContactos(){
+    this.contactoService.getContacto().subscribe((response) =>
+      this.contanto = response
+    )
+  }
+
+
+
 
   confirmar(resultado: any) {
     this.loading = false;
@@ -68,7 +96,7 @@ Factura() {
     return this.http.post<any>("http://localhost:9090/factura/guardar", this.factura, httpOptions)
 
     }
-  
+
    finalizarCrearFactura(factura: any) {
     if (factura) {
       alert("contacto creado exitosamente");
@@ -82,7 +110,7 @@ Factura() {
     this.loading = true;
     this.buscarFacturasServicio().subscribe((Response: any) => this.llenarFacturas(Response));
   }
-  
+
   agregarContacto(){
     this.factura.contactoList.push({});
   }
@@ -109,10 +137,10 @@ Factura() {
     return this.http.get<any>("http://localhost:9090/factura/buscar/"+this.factura.codfactura )
   }
 
- 
+
   regresar() {
     location.href = "/";
   }
-  
+
 
 }
