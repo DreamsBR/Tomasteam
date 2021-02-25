@@ -1,0 +1,133 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row" *hgIf="loading">
+                <div class="col-md-12">
+                    <div class="spinner-border text-info float-right" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Facturas: <button class="btn btn-success" (click)="agregar() "> Nuevo </button></h2>
+        </div>
+    </div>
+
+    <form (ngSubmit)="Factura()" id="crear" *ngIf="crear">
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="date" [(ngModel)]="factura.fechar" [ngModelOptions]="{standalone:true}" placeholder="Fecha"
+                    class="form-control" required>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" [(ngModel)]="factura.anulado" [ngModelOptions]="{standalone:true}"
+                    placeholder="Anulado" class="form-control" required>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" [(ngModel)]="factura.transferido" [ngModelOptions]="{standalone:true}"
+                    placeholder="Transferido" class="form-control" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" [(ngModel)]="factura.descuento" [ngModelOptions]="{standalone:true}"
+                    placeholder="Descuento" class="form-control" required>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="number" [(ngModel)]="factura.igv" [ngModelOptions]="{standalone:true}" placeholder="Igv"
+                    class="form-control" required>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="number" [(ngModel)]="factura.subTotal" [ngModelOptions]="{standalone:true}"
+                    placeholder="Subtotal" class="form-control" required>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="number" [(ngModel)]="factura.Total" [ngModelOptions]="{standalone:true}"
+                    placeholder="Total" class="form-control" required>
+            </div>
+        </div>
+    
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                Contacto: <button class="btn btn-warning btn-sm" (click)="agregarContacto()">Agregar.</button>
+            </div>
+        </div>
+        <br>
+        <div class="row" *ngFor="let contactos of factura.contactoList">
+            <br>
+            <br>
+            <div class="col-md-11">
+                <input type="text" [(ngModel)]="contacto.nombre" [ngModelOptions]="{standalone:true}"
+                    placeholder="nombre" class="form-control" required>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-danger btn-sm" (click)="borrarContacto(contacto)">Borrar</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                Servicio: <button class="btn btn-warning btn-sm" (click)="agregarServicio()">Agregar.</button>
+            </div>
+        </div>
+        <br>
+        <div class="row" *ngFor="let servicio of factura.serviciosList">
+            <br>
+            <br>
+            <div class="col-md-11">
+                <input type="text" [(ngModel)]="servicio.nombreservicio" [ngModelOptions]="{standalone:true}"
+                    placeholder="servicio" class="form-control" required>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-danger btn-sm" (click)="borrarServicio(servicio)">Borrar</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                Categoria: <button class="btn btn-warning btn-sm" (click)="agregarcategoriadeuda()">Agregar.</button>
+            </div>
+        </div>
+        <br>
+        <div class="row" *ngFor="let categoriadeuda of factura.categoriadeudaList">
+            <br>
+            <br>
+            <div class="col-md-11">
+                <input type="text" [(ngModel)]="categoriadeuda.nombrecategoria" [ngModelOptions]="{standalone:true}"
+                    placeholder="categoria" class="form-control" required>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-danger btn-sm" (click)="borrarcategoriadeuda(categoriadeuda)">Borrar</button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-primary float-right" value="crear">
+            </div>
+        </div>
+</form>
+<br>
+</div>

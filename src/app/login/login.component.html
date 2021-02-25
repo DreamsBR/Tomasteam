@@ -1,0 +1,53 @@
+<div class="logo"><a href="login"><img src="assets/img/Necceses.png" alt=""></a></div>
+<section id="pag1">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Bienvenidos!</h1>
+        </div>
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <div class="row" *hgIf="loading">
+        <div class="col-md-12">
+            <div class="spinner-border text-info float-right" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+    <form (ngSubmit)= "login()" id="login">
+        <div class="row">
+            <div class="col-md-12">
+            <input type="text" [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone:true}" placeholder="Correo" class="form-control" required>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+            <input type="password" [(ngModel)]="usuario.password" [ngModelOptions]="{standalone:true}" placeholder="password" class="form-control" required>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <input class="btn btn-success float-right" type="submit" value="Ingresar">
+            </div>
+        </div>
+    </form>
+    <br>
+    <div class="row" *hgIf="errorInicio">
+        <div class="col-md-12">
+        <label class="float-right" style="color: red;">Usuario o password incorrecto.</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label class="float-right">si no tienes cuenta con nosotros que esperas? has click    <a href="#" (click)="crearCuenta()"> aqui </a>.</label>
+        </div>
+    </div>
+</div>
+</section>
+

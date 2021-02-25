@@ -1,0 +1,53 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Bienvenido Administrador</h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="#" class="float-right" (click)="logout()">cerrar sesion</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Correo</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>contraseña</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios">
+                                <td>
+                                    {{usuario.correo}}
+                               
+                                </td>
+                                <td>
+                                    {{usuario.nombre}}
+                                </td>
+                                <td>
+                                    {{usuario.apellido}}
+                                </td>
+                        
+                                <td>
+                                    {{usuario.password}}
+                                </td>
+                                <div class="col-md-1">
+                                    <button class="btn btn-danger btn-sm" (click)="eliminar(usuario.correo)">Borrar</button>
+                                </div>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

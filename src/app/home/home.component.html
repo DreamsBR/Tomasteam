@@ -1,0 +1,46 @@
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Telefonos</th>
+                        <th>Direcciones</th>
+                        <th>Correos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let contacto of contactos">
+                        <td>
+                            {{contacto.nombre}}
+                        </td>
+                        <td>
+                            {{contacto.apellido}}
+                        </td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let telefono of contacto.telefonoList">{{telefono.numero}}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let direccion of contacto.direccionList">{{direccion.descripcion}}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let correo of contacto.correoList">{{correo.correo}}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let correo of contacto.facturaList">{{correo.Facturas}}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

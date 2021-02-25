@@ -1,0 +1,59 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        </div>
+        <div class="col-md-12">
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Telefonos</th>
+                                <th>Direcciones</th>
+                                <th>Correos</th>
+                                <th>Facturas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let contacto of contactos">
+                                <td>
+                                    {{contacto.nombre}}
+                                </td>
+                                <td>
+                                    {{contacto.apellido}}
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li *ngFor="let telefono of contacto.telefonoList">{{telefono.numero}}</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li *ngFor="let direccion of contacto.direccionList">{{direccion.descripcion}}</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li *ngFor="let correo of contacto.correoList">{{correo.correo}}</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li *ngFor="let correo of contacto.facturaList">{{correo.Facturas}}</li>
+                                    </ul>
+                                </td>
+                                <div class="col-md-1">
+                                    <button class="btn btn-danger btn-sm" (click)="eliminarContacto(contacto.idcontacto)">Borrar</button>
+                                </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
